@@ -1,9 +1,11 @@
+# Libraries
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from numpy import linalg as la
 from sklearn.preprocessing import OneHotEncoder, LabelEncoder, MinMaxScaler
 
+# read datasets
 def read_dataset(train_data_path, dev_data_path, test_data_path):
     train_dataset = pd.read_csv(train_data_path, header=None)
     dev_dataset = pd.read_csv(dev_data_path, header=None)
@@ -20,7 +22,7 @@ def read_dataset(train_data_path, dev_data_path, test_data_path):
     train_y = train[[9]]
     dev_y = dev[[9]]
     test_y = test[[9]]
-
+# extracting the class labels
     train_y = train_y.iloc[:,:].values
     dev_y = dev_y.iloc[:,:].values
     test_y = test_y.iloc[:,:].values
@@ -28,7 +30,7 @@ def read_dataset(train_data_path, dev_data_path, test_data_path):
     train_y = train_y.reshape((train_y.shape[0]))
     dev_y = dev_y.reshape((dev_y.shape[0]))
     test_y = test_y.reshape((test_y.shape[0]))
-
+# Converting the class labels to true or false 
     train_y[train_y == ' <=50K'] = -1
     dev_y[dev_y == ' <=50K'] = -1
     test_y[test_y == ' <=50K'] = -1
